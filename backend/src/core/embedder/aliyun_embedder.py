@@ -2,7 +2,11 @@
 import os
 import time
 from typing import Optional
+
+from langchain_core.embeddings import Embeddings
+
 from .base import Embedder
+from .langchain_compat import LangChainEmbeddings
 from ..config import EMBED_MODEL, EMBED_BASE_URL, EMBED_BATCH_SIZE, EMBED_BATCH_SLEEP, EMBED_MAX_TEXT_CHARS
 
 
@@ -27,7 +31,6 @@ class AliyunEmbedder(Embedder):
     def embed(self, texts: list[str]) -> list[list[float]]:
         if not texts:
             return []
-        # Truncate oversized texts to protect against API limits
         safe_texts: list[str] = []
         for t in texts:
             if len(t) > EMBED_MAX_TEXT_CHARS:
@@ -46,3 +49,16 @@ class AliyunEmbedder(Embedder):
             )
             all_embeddings.extend(item.embedding for item in response.data)
         return all_embeddings
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        """Embed documents. Alias for embed() for LangChain compatibility."""
+        return self.embed(texts)
+
+    def embed_query(self, text: str) -> list[float]:
+        """Embed a single query text."""
+        embeddings = self.embed([text])
+        return embeddings[0] if embeddings else []
+
+    def to_langchain(self) -> Embeddings:
+        """Convert to LangChain Embeddings interface."""
+        return LangChainEmbeddings(self)
