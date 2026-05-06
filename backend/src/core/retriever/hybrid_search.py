@@ -185,8 +185,12 @@ class HybridRetriever:
 
         for q in queries:
             normalized_q = _normalize_text(q)
-            query_embedding = await asyncio.to_thread(self.embedder.embed, [normalized_q])
-            query_embedding = query_embedding[0]
+            try:
+                query_embedding = await asyncio.to_thread(self.embedder.embed, [normalized_q])
+                query_embedding = query_embedding[0]
+            except Exception as e:
+                logger.warning(f"[HybridRetriever] Embedding failed: {e}, skipping vector search")
+                return []
             results = await self._vector_search(query_embedding, top_k, doc_id)
             for r in results:
                 key = r.get("child_id") or r.get("parent_id")
