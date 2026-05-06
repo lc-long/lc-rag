@@ -318,7 +318,7 @@ async def download_document(doc_id: str, db: Session = Depends(get_db)):
 
 
 @router.get("/{doc_id}/images/{image_idx}")
-async def get_document_image(doc_id: str, image_idx: int, db: Session = Depends(get_db)):
+async def get_document_image(doc_id: str, image_idx: int, request: Request, db: Session = Depends(get_db)):
     """Serve an image file from the image storage directory."""
     import os
     from ...core.config import IMAGE_STORAGE_DIR
@@ -356,7 +356,7 @@ async def get_document_image(doc_id: str, image_idx: int, db: Session = Depends(
 
 
 @router.get("/{doc_id}/images")
-async def list_document_images(doc_id: str, db: Session = Depends(get_db)):
+async def list_document_images(doc_id: str, request: Request, db: Session = Depends(get_db)):
     """List all images for a document."""
     image_chunks = request.app.state.components.vector_store.get_image_chunks_by_doc_id(doc_id)
     if not image_chunks:
