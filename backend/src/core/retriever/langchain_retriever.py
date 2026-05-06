@@ -14,6 +14,8 @@ class LangChainHybridRetriever(BaseRetriever):
     The wrapped HybridRetriever is used for the actual retrieval logic.
     """
 
+    model_config = {"arbitrary_types_allowed": True}
+
     def __init__(
         self,
         hybrid_retriever: Any,
@@ -25,9 +27,9 @@ class LangChainHybridRetriever(BaseRetriever):
     ):
         super().__init__(**kwargs)
         self._retriever = hybrid_retriever
-        self.top_k = top_k
-        self.doc_id = doc_id
-        self.doc_ids = doc_ids
+        self._top_k = top_k
+        self._doc_id = doc_id
+        self._doc_ids = doc_ids
 
     def _get_relevant_documents(
         self,
@@ -55,9 +57,9 @@ class LangChainHybridRetriever(BaseRetriever):
         **kwargs: Any,
     ) -> list[Document]:
         """Async retrieval using the wrapped HybridRetriever."""
-        doc_id = kwargs.get("doc_id", self.doc_id)
-        doc_ids = kwargs.get("doc_ids", self.doc_ids)
-        top_k = kwargs.get("top_k", self.top_k)
+        doc_id = kwargs.get("doc_id", self._doc_id)
+        doc_ids = kwargs.get("doc_ids", self._doc_ids)
+        top_k = kwargs.get("top_k", self._top_k)
 
         if doc_ids and len(doc_ids) == 1:
             chunks = await self._retriever.retrieve(query, top_k=top_k, doc_id=doc_ids[0])
