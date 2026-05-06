@@ -1,15 +1,23 @@
 """Global shared components initialized at startup."""
 import logging
 from dataclasses import dataclass
+from typing import Optional
+
+from langchain_core.embeddings import Embeddings
+from langchain_core.language_models import BaseChatModel
+from langchain_core.retrievers import BaseRetriever
 
 logger = logging.getLogger("nova_rag")
 
 from ..core.storage.vector_store import VectorStore
 from ..core.embedder.aliyun_embedder import AliyunEmbedder
+from ..core.embedder.langchain_compat import LangChainEmbeddings
 from ..core.retriever.hybrid_search import HybridRetriever
+from ..core.retriever.langchain_retriever import LangChainHybridRetriever
 from ..core.retriever.bm25_index import BM25Indexer
 from ..core.chunker.parent_child import ParentChildChunker
 from ..core.llm.minimax import MinimaxClient
+from ..core.llm.langchain_chat import MinimaxChatModel
 
 
 @dataclass
@@ -20,6 +28,9 @@ class Components:
     retriever: HybridRetriever
     chunker: ParentChildChunker
     llm_client: MinimaxClient
+    lc_embedder: Optional[Embeddings] = None
+    lc_chat_model: Optional[BaseChatModel] = None
+    lc_retriever: Optional[BaseRetriever] = None
 
 
 def create_components() -> Components:
@@ -31,6 +42,11 @@ def create_components() -> Components:
     retriever = HybridRetriever(vector_store, embedder, bm25_indexer)
     chunker = ParentChildChunker()
     llm_client = MinimaxClient()
+
+    lc_embedder = LangChainEmbeddings(embedder)
+    lc_chat_model = MinimaxChatModel()
+    lc_retriever = LangChainHybridRetriever(retriever)
+
     logger.info("[Nova-RAG] All components ready!")
     return Components(
         vector_store=vector_store,
@@ -39,4 +55,7 @@ def create_components() -> Components:
         retriever=retriever,
         chunker=chunker,
         llm_client=llm_client,
+        lc_embedder=lc_embedder,
+        lc_chat_model=lc_chat_model,
+        lc_retriever=lc_retriever,
     )
