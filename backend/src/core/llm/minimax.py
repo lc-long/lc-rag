@@ -135,6 +135,12 @@ class MinimaxClient:
         self.deepseek = DeepSeekClient(deepseek_key) if deepseek_key else None
 
     @property
+    def client(self) -> httpx.AsyncClient:
+        if self._client is None or self._client.is_closed:
+            self._client = httpx.AsyncClient(timeout=httpx.Timeout(60.0))
+        return self._client
+
+    @property
     def embedder(self):
         """Lazy-load embedder for response cache."""
         if self._embedder is None:
