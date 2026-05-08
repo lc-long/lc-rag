@@ -1,0 +1,11 @@
+{
+  "local_model": {
+    "name": "all-MiniLM-L6-v2",
+    "tasks": {
+      "SciFact": 0.64508,
+      "ArguAna": 0.50167,
+      "NFCorpus": 0.31594
+    },
+    "average_ndcg10": 0.4876
+  }
+}

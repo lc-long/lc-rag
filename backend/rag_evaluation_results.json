@@ -1,0 +1,196 @@
+{
+  "summary": {
+    "total_questions": 8,
+    "successful_evaluations": 8,
+    "average_metrics": {
+      "precision@8": 0.0,
+      "recall@5": 0.0,
+      "mrr": 0.0,
+      "ndcg@8": 0.0,
+      "context_relevance": 0.175,
+      "answer_relevance": 0.175,
+      "faithfulness": 0.175,
+      "latency_ms_avg": 1840.0,
+      "ttft_ms_avg": 0
+    },
+    "overall_score": 0.2577
+  },
+  "per_question_results": [
+    {
+      "id": "Q1",
+      "category": "Policy/Knowledge",
+      "question": "What is the company's policy on backup and disaster recovery?",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.2,
+        "answer_relevance": 0.2,
+        "faithfulness": 0.6
+      },
+      "system": {
+        "latency_ms": 1539.8873999947682,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    },
+    {
+      "id": "Q2",
+      "category": "Technical Config",
+      "question": "How do I configure the API gateway for production deployment?",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.2,
+        "answer_relevance": 0.0,
+        "faithfulness": 0.0
+      },
+      "system": {
+        "latency_ms": 2280.9030000062194,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    },
+    {
+      "id": "Q3",
+      "category": "Security/Permissions",
+      "question": "What permissions does a Developer role have in production namespace?",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.2,
+        "answer_relevance": 0.2,
+        "faithfulness": 0.2
+      },
+      "system": {
+        "latency_ms": 2136.0179999901447,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    },
+    {
+      "id": "Q4",
+      "category": "Architecture",
+      "question": "Explain the multi-region deployment architecture and failover mechanism",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.2,
+        "answer_relevance": 0.2,
+        "faithfulness": 0.0
+      },
+      "system": {
+        "latency_ms": 2464.1277999908198,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    },
+    {
+      "id": "Q5",
+      "category": "Monitoring",
+      "question": "What are the alert rules and thresholds for memory usage?",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.2,
+        "answer_relevance": 0.2,
+        "faithfulness": 0.0
+      },
+      "system": {
+        "latency_ms": 1341.4618999959202,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    },
+    {
+      "id": "Q6",
+      "category": "Troubleshooting",
+      "question": "If a pod is stuck in Pending state, what could be the causes and how to troubleshoot?",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.2,
+        "answer_relevance": 0.2,
+        "faithfulness": 0.2
+      },
+      "system": {
+        "latency_ms": 1877.9546000005212,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    },
+    {
+      "id": "Q7",
+      "category": "Technical Deep-Dive",
+      "question": "What is the RAG implementation architecture?",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.2,
+        "answer_relevance": 0.2,
+        "faithfulness": 0.2
+      },
+      "system": {
+        "latency_ms": 1677.8098000067985,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    },
+    {
+      "id": "Q8",
+      "category": "Technical Deep-Dive",
+      "question": "How does the hybrid retrieval algorithm combine dense and sparse search?",
+      "retrieval": {
+        "retrieved_count": 0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0,
+        "ndcg": 0.0
+      },
+      "generation": {
+        "context_relevance": 0.0,
+        "answer_relevance": 0.2,
+        "faithfulness": 0.2
+      },
+      "system": {
+        "latency_ms": 1399.6523000096204,
+        "ttft_ms": 0.0,
+        "answer_length": 0
+      }
+    }
+  ]
+}
